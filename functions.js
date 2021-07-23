@@ -1,12 +1,13 @@
 $(document).ready(function(){
+    var arr=[]
     for(var i=0;i<100;i++){
-        var x=("000"+i).substr(-3);
-        $("#grid-div").append(`<div><img class="a" id="a${x}" src="imga/tile${x}.png" alt="" orig-src="imga/tile${x}.png" alt-src="imgb/tile${x}.png"></div>`);
+        arr.push(i);
     }
-    $(".b").fadeOut(0);
-    $(".a").hover(function(){
-        $(this).attr("src",$(this).attr("alt-src"));
-    },function(){
-        $(this).attr("src",$(this).attr("orig-src"));
-    });
+    arr=arr.sort(()=>Math.round(Math.random())-0.5);
+    for(var i=0;i<100;i++){
+        var x=("000"+arr[i]).substr(-3);
+        $("#grid-div").append(`<div><img class="a" id="a${x}" src="img/tile${x}.png" alt="${x}"></div>`);
+    }
+    $("#grid-div").sortable();
+    $("#grid-div").disableSelection();
 })
